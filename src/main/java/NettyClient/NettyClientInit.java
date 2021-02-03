@@ -7,6 +7,7 @@ import io.netty.handler.codec.DelimiterBasedFrameDecoder;
 import io.netty.handler.codec.Delimiters;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
+import io.netty.handler.timeout.IdleStateHandler;
 import io.netty.util.CharsetUtil;
 
 public class NettyClientInit extends ChannelInitializer<SocketChannel> {
@@ -21,9 +22,10 @@ public class NettyClientInit extends ChannelInitializer<SocketChannel> {
         ChannelPipeline pipeline = socketChannel.pipeline();
 
         //pipeline.addLast(sslContext.newHandler(socketChannel.alloc(),NettyClient.HOST,NettyClient.PORT))
-                pipeline.addLast(new DelimiterBasedFrameDecoder(8192, Delimiters.lineDelimiter()))
-                .addLast(new StringDecoder(CharsetUtil.UTF_8))
-                .addLast(new StringEncoder(CharsetUtil.UTF_8))
-                .addLast(new NettyClientHandler());
+                pipeline
+                        .addLast(new DelimiterBasedFrameDecoder(8192, Delimiters.lineDelimiter()))
+                        .addLast(new StringDecoder(CharsetUtil.UTF_8))
+                        .addLast(new StringEncoder(CharsetUtil.UTF_8))
+                        .addLast(new NettyClientHandler());
     }
 }

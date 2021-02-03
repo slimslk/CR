@@ -10,6 +10,16 @@ public class Player {
     private Time pl_time;
     private int pl_score;
 
+    public Player(){};
+    public Player(String pl_id, String pl_name, int pl_distance, int pl_clones, Time pl_time, int pl_score) {
+        this.pl_id = pl_id;
+        this.pl_name = pl_name;
+        this.pl_distance = pl_distance;
+        this.pl_clones = pl_clones;
+        this.pl_time = pl_time;
+        this.pl_score = pl_score;
+    }
+
     public String getPl_id() {
         return pl_id;
     }

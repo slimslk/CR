@@ -13,11 +13,12 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<String> {
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, String s) throws Exception {
-        if(s.equalsIgnoreCase("restartserver")){
-            NettyServer.restart();
-            return;
-        }
         ctx.writeAndFlush(new messageSplitter().splitMessage(s)+"\n");
+    }
+
+    @Override
+    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+        System.err.println("Channel closed");
     }
 
     @Override

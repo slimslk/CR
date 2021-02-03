@@ -35,5 +35,4 @@ public class mainClass {
             if(flag){break;}
             System.out.println(s);*/
         }
-    }
 }
